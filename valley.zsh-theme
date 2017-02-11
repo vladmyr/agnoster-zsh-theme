@@ -36,6 +36,10 @@ DETACHED="\u27a6"
 CROSS="\u2718"
 LIGHTNING="\u26a1"
 GEAR="\u2699"
+# PROMPR_POINTER="\uf054"
+PROMPR_POINTER="\uf054"
+
+
 
 # Begin a segment
 # Takes two arguments, background and foreground. Both can be omitted,
@@ -65,7 +69,7 @@ prompt_end() {
 }
 
 prompt_new_line() {
-  printf "\n123"
+  prompt_segment default cyan "\n%{%F{green}%}$PROMPR_POINTER"
   CURRENT_BG=''
 }
 
@@ -77,7 +81,7 @@ prompt_context() {
   local user=`whoami`
 
   if [[ "$user" != "$DEFAULT_USER" || -n "$SSH_CONNECTION" ]]; then
-    prompt_segment $PRIMARY_FG default " %(!.%{%F{yellow}%}.)$user@%m "
+    prompt_segment $PRIMARY_FG default "%(!.%{%F{yellow}%}.)$user@%m "
   fi
 }
 
@@ -122,7 +126,7 @@ prompt_status() {
   [[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}$LIGHTNING"
   [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{cyan}%}$GEAR"
 
-  [[ -n "$symbols" ]] && prompt_segment $PRIMARY_FG default " $symbols "
+  [[ -n "$symbols" ]] && prompt_segment $PRIMARY_FG default "$symbols "
 }
 
 # Display current virtual environment
@@ -143,8 +147,8 @@ prompt_agnoster_main() {
   prompt_virtualenv
   prompt_dir
   prompt_git
-  prompt_end
   prompt_new_line
+  prompt_end
 }
 
 prompt_agnoster_precmd() {
