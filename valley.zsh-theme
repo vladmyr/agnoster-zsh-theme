@@ -64,6 +64,11 @@ prompt_end() {
   CURRENT_BG=''
 }
 
+prompt_new_line() {
+  printf "\n123"
+  CURRENT_BG=''
+}
+
 ### Prompt components
 # Each component will draw itself, and hide itself if no information needs to be shown
 
@@ -139,6 +144,7 @@ prompt_agnoster_main() {
   prompt_dir
   prompt_git
   prompt_end
+  prompt_new_line
 }
 
 prompt_agnoster_precmd() {
