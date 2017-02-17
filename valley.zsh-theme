@@ -36,8 +36,7 @@ DETACHED="\u27a6"
 CROSS="\u2718"
 LIGHTNING="\u26a1"
 GEAR="\u2699"
-# PROMPR_POINTER="\uf054"
-PROMPR_POINTER="\uf054"
+PROMPT_STAER_POINTER="\uf054"
 
 
 
@@ -69,8 +68,7 @@ prompt_end() {
 }
 
 prompt_new_line() {
-  prompt_segment default cyan "\n%{%F{green}%}$PROMPR_POINTER"
-  CURRENT_BG=''
+  print -n "\n\r%{%F{green}%}$PROMPT_STAER_POINTER%{%f%}"
 }
 
 ### Prompt components
@@ -147,8 +145,8 @@ prompt_agnoster_main() {
   prompt_virtualenv
   prompt_dir
   prompt_git
-  prompt_new_line
   prompt_end
+  prompt_new_line
 }
 
 prompt_agnoster_precmd() {
